@@ -3,13 +3,16 @@
        <div class="btns">
            <custom-button 
             @click="showDialog"
+            v-if="this.posts.length > 0"
        >Создать пост
        </custom-button>
         <custom-button 
+            v-show="!this.posts.length > 0"
             @click="fetchPosts"
        >Загрузить
        </custom-button>
        <custom-select
+            v-if="this.posts.length > 0"
             v-model="selectedSort"
             :options="sortOptions"
        ></custom-select>
@@ -31,7 +34,7 @@
                 'current-page': page === pageNumber
             }"
             @click="changePage(pageNumber)"
-            >{{pageNumber}}</div>
+            >{{pageNumber}}</div>            
     </div>
     </div>
     
@@ -65,7 +68,10 @@ export default {
           this.dialogVisible = false;
       },
       removePost(post) {
-          this.posts = this.posts.filter(item => item.id != post.id)
+          if(confirm('Подтверждение удаление поста')){
+               this.posts = this.posts.filter(item => item.id != post.id)
+
+          }
       },
       showDialog() {
           this.dialogVisible  = true;
@@ -108,11 +114,13 @@ export default {
 #app {
     padding: 20px;
     margin: 0 30%;
+    display: flex;
 }
 .btns {
     display: flex;
     margin:15px 0;
     justify-content: space-between;
+    align-items: center;
 }
 .page__wrapper {
     display: flex;

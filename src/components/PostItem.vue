@@ -3,7 +3,11 @@
             <div>
                 <div><strong>Статья:</strong>{{post.id}}</div>
                 <div><strong>Заголовок:</strong>{{post.title}}</div>
-                <div><strong>Текст:</strong>{{post.body}}</div>
+                <div v-show="showBody"><strong>Текст:</strong>{{post.body}}</div>
+                <custom-button class="open"
+                    v-show="!showBody" 
+                    @click="showText">
+                Полный текст</custom-button>
             </div>
             <div class="post__btns">
                 <a  class="btn-del" 
@@ -21,6 +25,16 @@ export default {
             type: Object,
             required:true
         }
+    },
+    data(){
+        return{
+            showBody:false
+        }
+    },
+    methods: {
+        showText() {
+            this.showBody = true 
+        }
     }
     
 }
@@ -30,11 +44,13 @@ export default {
     padding: 10px;
     margin-top: 10px;
     display: flex;
-    align-items: center;
+    align-self: center;
     justify-content: space-between;
 }
 .delete {
     height: 20px;
 }
-
+.open {
+    display: flex;
+}
 </style>
