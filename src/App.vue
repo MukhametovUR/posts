@@ -9,6 +9,7 @@
         <custom-button 
             v-show="!this.posts.length > 0"
             @click="fetchPosts"
+            class="download"
        >Загрузить
        </custom-button>
        <custom-select
@@ -122,6 +123,7 @@ export default {
     justify-content: space-between;
     align-items: center;
 }
+
 .page__wrapper {
     display: flex;
     margin-top: 15px;

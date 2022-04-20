@@ -4,7 +4,7 @@
                 <div><strong>Статья:</strong>{{post.id}}</div>
                 <div><strong>Заголовок:</strong>{{post.title}}</div>
                 <div v-show="showBody"><strong>Текст:</strong>{{post.body}}</div>
-                <custom-button class="open"
+                <custom-button
                     v-show="!showBody" 
                     @click="showText">
                 Полный текст</custom-button>
@@ -49,8 +49,5 @@ export default {
 }
 .delete {
     height: 20px;
-}
-.open {
-    display: flex;
 }
 </style>
