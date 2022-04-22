@@ -50,9 +50,9 @@ export default {
     align-self: center;
     justify-content: space-between;
     flex-direction: column;
--webkit-box-shadow: 7px -1px 45px -19px rgba(0, 0, 0, 0.18);
--moz-box-shadow: 7px -1px 45px -19px rgba(0, 0, 0, 0.18);
-box-shadow: 7px -1px 45px -19px rgba(0, 0, 0, 0.18);
+    -webkit-box-shadow: 7px -1px 45px -19px rgba(0, 0, 0, 0.18);
+    -moz-box-shadow: 7px -1px 45px -19px rgba(0, 0, 0, 0.18);
+    box-shadow: 7px -1px 45px -19px rgba(0, 0, 0, 0.18);
 }
 .post-item {
     display: flex;
