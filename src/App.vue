@@ -26,16 +26,25 @@
         :posts="posts"
         @remove="removePost"
         />
-        <div class="page__wrapper">
-        <div 
-            v-for="pageNumber in totalPages" 
-            :key="pageNumber" 
-            class="page"
-            :class="{
-                'current-page': page === pageNumber
-            }"
-            @click="changePage(pageNumber)"
-            >{{pageNumber}}</div>            
+            <div class="pagination" v-show="this.posts.length > 0">
+                <div class="pagination-item"
+                    @click="begin">
+                        <img src="/double__left.png" alt="double__left">
+                    </div>
+                <div class="pagination-item"
+                    @click="prev"> 
+                        <img src="/left.png" alt="left">
+                </div>
+                <div class="pagination-item"
+                    > {{ page }} </div>
+                <div class="pagination-item"
+                    @click="next">
+                        <img src="/right.png" alt="right">
+                </div>  
+                <div class="pagination-item"
+                     @click="end">
+                        <img src="/double_right.png" alt="double_right">
+                </div>         
     </div>
     </div>
     
@@ -43,6 +52,7 @@
 <script>
 import PostForm from '@/components/PostForm.vue';
 import PostList from '@/components/PostList.vue';
+
 import axios from 'axios';
 export default {
     components:{
@@ -80,6 +90,26 @@ export default {
       changePage(pageNumber) {
           this.page = pageNumber;
           this.fetchPosts()
+      },
+      next() {
+          if(this.page < this.limit){
+           this.page++
+           this.fetchPosts()
+          }
+      },
+      prev() {
+          if(this.page > 1){
+           this.page--
+           this.fetchPosts()
+          }
+      },
+      begin() {
+           this.page = 1
+           this.fetchPosts()
+      },
+        end() {
+           this.page = this.limit
+           this.fetchPosts()
       },
       async fetchPosts() {
           try {
@@ -124,15 +154,23 @@ export default {
     align-items: center;
 }
 
-.page__wrapper {
-    display: flex;
-    margin-top: 15px;
-}
+
 .page {
     border:1px solid;
     padding: 10px;
 }
 .current-page {
     border:2px solid red;
+}
+.pagination {
+    display: flex;
+    margin-top: 15px;
+    justify-content: center;
+}
+.pagination-item {
+    margin-right: 10px;
+}
+.pagination-item img {
+    height: 20px;
 }
 </style>
